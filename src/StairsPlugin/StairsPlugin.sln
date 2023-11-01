@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34202.233
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StairsPlugin.View", "StairsPlugin.View\StairsPlugin.View.csproj", "{377D9BC4-E4D3-4EDE-94AC-0FCA1E5849B9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StairsPlugin.Model", "StairsPlugin.Model\StairsPlugin.Model.csproj", "{958EAF9B-D17A-4119-932B-03A7AAFE0E50}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{377D9BC4-E4D3-4EDE-94AC-0FCA1E5849B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{377D9BC4-E4D3-4EDE-94AC-0FCA1E5849B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{377D9BC4-E4D3-4EDE-94AC-0FCA1E5849B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{377D9BC4-E4D3-4EDE-94AC-0FCA1E5849B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{958EAF9B-D17A-4119-932B-03A7AAFE0E50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{958EAF9B-D17A-4119-932B-03A7AAFE0E50}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{958EAF9B-D17A-4119-932B-03A7AAFE0E50}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{958EAF9B-D17A-4119-932B-03A7AAFE0E50}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {38BBEFC7-84B2-402B-BFCE-0B882954F899}
+	EndGlobalSection
+EndGlobal
