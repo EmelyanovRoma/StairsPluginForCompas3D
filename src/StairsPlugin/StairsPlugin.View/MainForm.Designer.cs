@@ -73,6 +73,7 @@
             this.BuildButton.TabIndex = 1;
             this.BuildButton.Text = "Построить";
             this.BuildButton.UseVisualStyleBackColor = true;
+            this.BuildButton.Click += new System.EventHandler(this.BuildButton_Click);
             // 
             // StairsHeightLabel
             // 
@@ -147,6 +148,7 @@
             0,
             0,
             0});
+            this.StairsWidthNumericUpDown.ValueChanged += new System.EventHandler(this.StairsWidthNumericUpDown_ValueChanged);
             // 
             // StairsWidthLimitLabel
             // 
@@ -155,7 +157,7 @@
             this.StairsWidthLimitLabel.Name = "StairsWidthLimitLabel";
             this.StairsWidthLimitLabel.Size = new System.Drawing.Size(72, 15);
             this.StairsWidthLimitLabel.TabIndex = 7;
-            this.StairsWidthLimitLabel.Text = "250-1000мм";
+            this.StairsWidthLimitLabel.Text = "190-1000мм";
             // 
             // StairsThicknessLabel
             // 
@@ -204,9 +206,9 @@
             this.StringerWidthLabel.AutoSize = true;
             this.StringerWidthLabel.Location = new System.Drawing.Point(5, 122);
             this.StringerWidthLabel.Name = "StringerWidthLabel";
-            this.StringerWidthLabel.Size = new System.Drawing.Size(116, 15);
+            this.StringerWidthLabel.Size = new System.Drawing.Size(111, 15);
             this.StringerWidthLabel.TabIndex = 11;
-            this.StringerWidthLabel.Text = "Ширина тетивы W1:";
+            this.StringerWidthLabel.Text = "Ширина балки W1:";
             // 
             // StringerWidthNumericUpDown
             // 
@@ -231,6 +233,7 @@
             0,
             0,
             0});
+            this.StringerWidthNumericUpDown.ValueChanged += new System.EventHandler(this.StringerWidthNumericUpDown_ValueChanged);
             // 
             // StringerWidthLimitLabel
             // 
@@ -264,6 +267,7 @@
             0,
             0,
             0});
+            this.StepLengthNumericUpDown.ValueChanged += new System.EventHandler(this.StepLengthNumericUpDown_ValueChanged);
             // 
             // StepLengthLabel
             // 
@@ -281,7 +285,7 @@
             this.StepLengthLimitLabel.Name = "StepLengthLimitLabel";
             this.StepLengthLimitLabel.Size = new System.Drawing.Size(66, 15);
             this.StepLengthLimitLabel.TabIndex = 16;
-            this.StepLengthLimitLabel.Text = "150-960мм";
+            this.StepLengthLimitLabel.Text = "150-900мм";
             // 
             // MainForm
             // 
