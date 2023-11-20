@@ -136,7 +136,7 @@
             0,
             0});
             this.StairsWidthNumericUpDown.Minimum = new decimal(new int[] {
-            250,
+            190,
             0,
             0,
             0});
@@ -250,7 +250,7 @@
             this.StepLengthNumericUpDown.Location = new System.Drawing.Point(137, 156);
             this.StepLengthNumericUpDown.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
             this.StepLengthNumericUpDown.Maximum = new decimal(new int[] {
-            960,
+            900,
             0,
             0,
             0});
