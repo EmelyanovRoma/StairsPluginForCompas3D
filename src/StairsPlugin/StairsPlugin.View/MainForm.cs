@@ -12,7 +12,8 @@ namespace StairsPlugin.View
 
         private void BuildButton_Click(object sender, EventArgs e)
         {
-
+            MessageBox.Show("Ширина балки W1: Значение не принадлежит диапазону допустимых значений.",
+                "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private void StairsWidthNumericUpDown_ValueChanged(object sender, EventArgs e)

@@ -144,7 +144,7 @@
             this.StairsWidthNumericUpDown.Size = new System.Drawing.Size(71, 23);
             this.StairsWidthNumericUpDown.TabIndex = 6;
             this.StairsWidthNumericUpDown.Value = new decimal(new int[] {
-            250,
+            1000,
             0,
             0,
             0});
@@ -212,6 +212,7 @@
             // 
             // StringerWidthNumericUpDown
             // 
+            this.StringerWidthNumericUpDown.BackColor = System.Drawing.Color.LightCoral;
             this.StringerWidthNumericUpDown.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.StringerWidthNumericUpDown.Location = new System.Drawing.Point(137, 120);
             this.StringerWidthNumericUpDown.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
@@ -229,7 +230,7 @@
             this.StringerWidthNumericUpDown.Size = new System.Drawing.Size(71, 23);
             this.StringerWidthNumericUpDown.TabIndex = 12;
             this.StringerWidthNumericUpDown.Value = new decimal(new int[] {
-            20,
+            30,
             0,
             0,
             0});
@@ -242,7 +243,7 @@
             this.StringerWidthLimitLabel.Name = "StringerWidthLimitLabel";
             this.StringerWidthLimitLabel.Size = new System.Drawing.Size(54, 15);
             this.StringerWidthLimitLabel.TabIndex = 13;
-            this.StringerWidthLimitLabel.Text = "20-50мм";
+            this.StringerWidthLimitLabel.Text = "20-25мм";
             // 
             // StepLengthNumericUpDown
             // 
@@ -250,7 +251,7 @@
             this.StepLengthNumericUpDown.Location = new System.Drawing.Point(137, 156);
             this.StepLengthNumericUpDown.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
             this.StepLengthNumericUpDown.Maximum = new decimal(new int[] {
-            900,
+            960,
             0,
             0,
             0});
@@ -263,7 +264,7 @@
             this.StepLengthNumericUpDown.Size = new System.Drawing.Size(71, 23);
             this.StepLengthNumericUpDown.TabIndex = 14;
             this.StepLengthNumericUpDown.Value = new decimal(new int[] {
-            150,
+            950,
             0,
             0,
             0});
@@ -285,7 +286,7 @@
             this.StepLengthLimitLabel.Name = "StepLengthLimitLabel";
             this.StepLengthLimitLabel.Size = new System.Drawing.Size(66, 15);
             this.StepLengthLimitLabel.TabIndex = 16;
-            this.StepLengthLimitLabel.Text = "150-900мм";
+            this.StepLengthLimitLabel.Text = "150-960мм";
             // 
             // MainForm
             // 
