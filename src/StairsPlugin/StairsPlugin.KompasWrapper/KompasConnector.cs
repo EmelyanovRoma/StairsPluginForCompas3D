@@ -140,10 +140,29 @@
         /// Выбрать плоскость для эскиза.
         /// </summary>
         /// <returns>Сущность с выбранной плоскостью.</returns>
-        public ksEntity CreatePlane()
+        public ksEntity CreatePlaneXOY()
         {
             var plane = (ksEntity)_ksPart.GetDefaultEntity(
                 (short)Obj3dType.o3d_planeXOY);
+
+            _ksEntity = (ksEntity)_ksPart.NewEntity(
+                (short)Obj3dType.o3d_sketch);
+            _ksSketchDefinition =
+                (ksSketchDefinition)_ksEntity.GetDefinition();
+            _ksSketchDefinition.SetPlane(plane);
+            _ksEntity.Create();
+
+            return _ksEntity;
+        }
+
+        /// <summary>
+        /// Выбрать плоскость для эскиза.
+        /// </summary>
+        /// <returns>Сущность с выбранной плоскостью.</returns>
+        public ksEntity CreatePlaneYOZ()
+        {
+            var plane = (ksEntity)_ksPart.GetDefaultEntity(
+                (short)Obj3dType.o3d_planeYOZ);
 
             _ksEntity = (ksEntity)_ksPart.NewEntity(
                 (short)Obj3dType.o3d_sketch);
@@ -173,7 +192,7 @@
             paramRectangle.ang = angle;
             paramRectangle.style = 1;
 
-            _ksDocument2D.ksRectangle(paramRectangle, 0);
+            _ksDocument2D.ksRectangle(paramRectangle);
         }
 
         /// <summary>
@@ -193,6 +212,14 @@
             entityExtrudeDefinition.SetSketch(
                 sketch.GetDefinition());
             entityExtrude.Create();
+        }
+
+        /// <summary>
+        /// Создать массив по сетке.
+        /// </summary>
+        public void GridArray()
+        {
+            
         }
     }
 }

@@ -106,6 +106,7 @@
             0,
             0,
             0});
+            this.StairsHeightNumericUpDown.ValueChanged += new System.EventHandler(this.StairsHeightNumericUpDown_ValueChanged);
             // 
             // StairsHeightLimitLabel
             // 
@@ -191,6 +192,7 @@
             0,
             0,
             0});
+            this.StairsThicknessNumericUpDown.ValueChanged += new System.EventHandler(this.StairsThicknessNumericUpDown_ValueChanged);
             // 
             // StairsThicknessLimitLabel
             // 

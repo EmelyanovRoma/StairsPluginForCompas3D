@@ -23,7 +23,7 @@
         /// <summary>
         /// Ширина балки.
         /// </summary>
-        StingerWidth,
+        StringerWidth,
 
         /// <summary>
         /// Длина ступени.

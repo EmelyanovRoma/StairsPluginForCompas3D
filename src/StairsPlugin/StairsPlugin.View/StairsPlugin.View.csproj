@@ -120,5 +120,15 @@
     <Analyzer Include="..\packages\StyleCop.Analyzers.1.1.118\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
     <Analyzer Include="..\packages\StyleCop.Analyzers.1.1.118\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\StairsPlugin.KompasWrapper\StairsPlugin.KompasWrapper.csproj">
+      <Project>{af3190e0-29f2-4903-afdd-abfd83a116d0}</Project>
+      <Name>StairsPlugin.KompasWrapper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\StairsPlugin.Model\StairsPlugin.Model.csproj">
+      <Project>{958eaf9b-d17a-4119-932b-03a7aafe0e50}</Project>
+      <Name>StairsPlugin.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

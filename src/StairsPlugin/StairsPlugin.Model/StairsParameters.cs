@@ -26,7 +26,7 @@
                         50, 20, 20)
                 },
                 {
-                    StairsParameterType.StingerWidth, new StairsParameter(
+                    StairsParameterType.StringerWidth, new StairsParameter(
                         50, 20, 20)
                 },
                 {
@@ -58,6 +58,21 @@
         public void SetValue(StairsParameterType type, int value)
         {
             _stairsParameters[type].Value = value;
+
+            if (type == StairsParameterType.Width)
+            {
+                RecalculateStepLength();
+            }
+
+            if (type == StairsParameterType.StepLength)
+            {
+                RecalculateStairsWidth();
+            }
+
+            if (type == StairsParameterType.StringerWidth)
+            {
+                RecalculateStairsWidth();
+            }
         }
 
         /// <summary>
@@ -67,7 +82,7 @@
         {
             _stairsParameters[StairsParameterType.Width].Value =
                 _stairsParameters[StairsParameterType.StepLength].Value +
-                (2 * _stairsParameters[StairsParameterType.StingerWidth].Value);
+                (2 * _stairsParameters[StairsParameterType.StringerWidth].Value);
         }
 
         /// <summary>
@@ -77,7 +92,7 @@
         {
             _stairsParameters[StairsParameterType.StepLength].Value =
                 _stairsParameters[StairsParameterType.Width].Value -
-                (2 * _stairsParameters[StairsParameterType.StingerWidth].Value);
+                (2 * _stairsParameters[StairsParameterType.StringerWidth].Value);
         }
 
         /// <summary>
