@@ -13,6 +13,11 @@
         private int _value;
 
         /// <summary>
+        /// Максимальное значение параметра.
+        /// </summary>
+        private int _maxValue;
+
+        /// <summary>
         /// Создает экземпляр <see cref="StairsParameter"/>.
         /// </summary>
         /// <param name="maxValue">Максимальное значение параметра.</param>
@@ -31,14 +36,28 @@
         public StairsParameter() { }
 
         /// <summary>
-        /// Задает или возвращает максимальное значение параметра.
-        /// </summary>
-        public int MaxValue { get; private set; }
-
-        /// <summary>
         /// Задает или возвращает минимальное значение параметра.
         /// </summary>
         public int MinValue { get; private set; }
+
+        /// <summary>
+        /// Задает или возвращает максимальное значение параметра.
+        /// </summary>
+        public int MaxValue
+        {
+            get => _maxValue;
+            set
+            {
+                if (_maxValue < MinValue)
+                {
+                    throw new ArgumentException(
+                        $"Максимальное значение не должно быть "
+                        + $"меньше минимального - {MinValue}");
+                }
+
+                _maxValue = value;
+            }
+        }
 
         /// <summary>
         /// Задает или возвращает текущее значение параметра.

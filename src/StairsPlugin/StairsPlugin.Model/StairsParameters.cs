@@ -76,6 +76,14 @@
             {
                 RecalculateStairsWidth();
                 RecalculateStringerWidth();
+
+                _stairsParameters[StairsParameterType.StepLength].MaxValue =
+                    (_stairsParameters[StairsParameterType.Width].MaxValue
+                    - _stairsParameters[type].Value) * 2;
+                _stairsParameters[type].MaxValue =
+                    (_stairsParameters[StairsParameterType.Width].MaxValue
+                     - _stairsParameters[StairsParameterType.StepLength].
+                         MaxValue) / 2;
             }
         }
 
