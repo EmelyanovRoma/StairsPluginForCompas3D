@@ -1,6 +1,7 @@
 ﻿namespace StairsPlugin.View
 {
     using System;
+    using System.Drawing;
     using System.Windows.Forms;
     using StairsPlugin.KompasWrapper;
     using StairsPlugin.Model;
@@ -19,6 +20,16 @@
         /// Соединитель с API КОМПАС-3D.
         /// </summary>
         private readonly StairsBuilder _builder = new StairsBuilder();
+
+        /// <summary>
+        /// Цвет numericUpDown при наличии ошибки.
+        /// </summary>
+        private readonly Color _errorBackColor = Color.LightPink;
+
+        /// <summary>
+        /// Стандартный цвет numericUpDown.
+        /// </summary>
+        private readonly Color _defaultBackColor = Color.White;
 
         /// <summary>
         /// Конструктор главной формы.

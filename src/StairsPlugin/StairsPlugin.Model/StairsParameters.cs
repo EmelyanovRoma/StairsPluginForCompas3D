@@ -1,5 +1,6 @@
 ﻿namespace StairsPlugin.Model
 {
+    using System;
     using System.Collections.Generic;
 
     /// <summary>
@@ -62,16 +63,19 @@
             if (type == StairsParameterType.Width)
             {
                 RecalculateStepLength();
+                RecalculateStringerWidth();
             }
 
             if (type == StairsParameterType.StepLength)
             {
                 RecalculateStairsWidth();
+                RecalculateStringerWidth();
             }
 
             if (type == StairsParameterType.StringerWidth)
             {
                 RecalculateStairsWidth();
+                RecalculateStringerWidth();
             }
         }
 
@@ -96,8 +100,43 @@
         }
 
         /// <summary>
+        /// Пересчитывает ширину балки.
+        /// </summary>
+        private void RecalculateStringerWidth()
+        {
+            _stairsParameters[StairsParameterType.StringerWidth].Value =
+                (_stairsParameters[StairsParameterType.Width].Value -
+                 _stairsParameters[StairsParameterType.StepLength].Value) / 2;
+        }
+
+        /// <summary>
         /// Кросс-валидация.
         /// </summary>
-        private void CrossValidation(StairsParameterType type) { }
+        private void CrossValidation(StairsParameterType type, int value)
+        {
+            if (type == StairsParameterType.StepLength)
+            {
+                if (value < _stairsParameters[type].MinValue
+                    || value > _stairsParameters[type].MaxValue)
+                {
+                    throw new Exception(
+                        $"Длина ступени должна быть в диапазоне"
+                        + $" {_stairsParameters[type].MinValue} -"
+                        + $" {_stairsParameters[type].MaxValue} мм");
+                }
+            }
+
+            if (type == StairsParameterType.StringerWidth)
+            {
+                if (value < _stairsParameters[type].MinValue
+                    || value > _stairsParameters[type].MaxValue)
+                {
+                    throw new Exception(
+                        $"Ширина балки должна быть в диапазоне"
+                        + $" {_stairsParameters[type].MinValue} -"
+                        + $" {_stairsParameters[type].MaxValue} мм");
+                }
+            }
+        }
     }
 }

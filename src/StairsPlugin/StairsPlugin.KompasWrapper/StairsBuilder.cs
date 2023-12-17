@@ -64,7 +64,15 @@
                 StairsParameterType.Height);
             int stepsCount = (int)(stairsHeight / stepsGap);
             double stepsDistance = (stepsGap * (stepsCount - 1)) +
-                                   (stepWidth * stepsCount);
+                                   (stepHeight * stepsCount);
+            
+            if (stepsDistance > stairsHeight)
+            {
+                stepsCount--;
+                stepsDistance = (stepsGap * (stepsCount - 1)) +
+                                (stepHeight * stepsCount);
+            }
+
             double initialDistanceStep = (stairsHeight - stepsDistance) / 2;
             double xStart = initialDistanceStep;
 

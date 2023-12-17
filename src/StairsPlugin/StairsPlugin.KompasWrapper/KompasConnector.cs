@@ -213,13 +213,5 @@
                 sketch.GetDefinition());
             entityExtrude.Create();
         }
-
-        /// <summary>
-        /// Создать массив по сетке.
-        /// </summary>
-        public void GridArray()
-        {
-            
-        }
     }
 }
