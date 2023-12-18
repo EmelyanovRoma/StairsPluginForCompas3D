@@ -52,18 +52,47 @@
         }
 
         /// <summary>
+        /// Возвращает минимальное значение параметра лестницы.
+        /// </summary>
+        /// <param name="type">Тип параметра лестницы.</param>
+        /// <returns>Минимальное значение параметра лестницы.</returns>
+        public int GetMinValue(StairsParameterType type)
+        {
+            return _stairsParameters[type].MinValue;
+        }
+
+        /// <summary>
+        /// Возвращает максимальное значение параметра лестницы.
+        /// </summary>
+        /// <param name="type">Тип параметра лестницы.</param>
+        /// <returns>Максимальное значение параметра лестницы.</returns>
+        public int GetMaxValue(StairsParameterType type)
+        {
+            return _stairsParameters[type].MaxValue;
+        }
+
+        /// <summary>
         /// Задает значение параметра лестницы.
         /// </summary>
         /// <param name="type">Тип параметра лестницы.</param>
         /// <param name="value">Новое значение параметра лестницы.</param>
         public void SetValue(StairsParameterType type, int value)
         {
+            CrossValidation(type, value);
             _stairsParameters[type].Value = value;
 
             if (type == StairsParameterType.Width)
             {
                 RecalculateStepLength();
                 RecalculateStringerWidth();
+
+                _stairsParameters[StairsParameterType.StepLength].MaxValue =
+                    _stairsParameters[type].MaxValue
+                    - (_stairsParameters[StairsParameterType.StringerWidth].Value * 2);
+                _stairsParameters[StairsParameterType.StringerWidth].MaxValue =
+                    (_stairsParameters[type].MaxValue
+                     - _stairsParameters[StairsParameterType.StepLength].
+                         MaxValue) / 2;
             }
 
             if (type == StairsParameterType.StepLength)
@@ -78,12 +107,12 @@
                 RecalculateStringerWidth();
 
                 _stairsParameters[StairsParameterType.StepLength].MaxValue =
-                    (_stairsParameters[StairsParameterType.Width].MaxValue
-                    - _stairsParameters[type].Value) * 2;
-                _stairsParameters[type].MaxValue =
+                    _stairsParameters[StairsParameterType.Width].MaxValue
+                    - (_stairsParameters[type].Value * 2);
+                /*_stairsParameters[type].MaxValue =
                     (_stairsParameters[StairsParameterType.Width].MaxValue
                      - _stairsParameters[StairsParameterType.StepLength].
-                         MaxValue) / 2;
+                         MaxValue) / 2;*/
             }
         }
 
