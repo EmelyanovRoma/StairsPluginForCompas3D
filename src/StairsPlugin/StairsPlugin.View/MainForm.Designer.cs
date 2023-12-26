@@ -149,7 +149,7 @@
             0,
             0,
             0});
-            this.StairsWidthNumericUpDown.ValueChanged += new System.EventHandler(this.StairsWidthNumericUpDown_ValueChanged);
+            this.StairsWidthNumericUpDown.ValueChanged += new System.EventHandler(this.NumericUpDown_ValueChanged);
             // 
             // StairsWidthLimitLabel
             // 

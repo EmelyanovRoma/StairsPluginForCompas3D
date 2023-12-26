@@ -9,6 +9,16 @@
     public class StairsBuilder
     {
         /// <summary>
+        /// Расстояние между ступенями.
+        /// </summary>
+        private const int StepsGap = 300;
+
+        /// <summary>
+        /// Высота ступени.
+        /// </summary>
+        private const int StepHeight = 20;
+
+        /// <summary>
         /// Коннектор компаса.
         /// </summary>
         private readonly KompasConnector _ksConnector = new KompasConnector();
@@ -51,10 +61,8 @@
         private void BuildSteps(StairsParameters stairsParameters)
         {
             ksEntity sketch = _ksConnector.CreatePlaneYOZ();
-            double stepsGap = 300;
             double yStart = 0;
             double angle = 0;
-            double stepHeight = 20;
 
             double stepWidth = stairsParameters.GetValue(
                 StairsParameterType.Thickness);
@@ -62,15 +70,15 @@
                 StairsParameterType.StepLength);
             double stairsHeight = stairsParameters.GetValue(
                 StairsParameterType.Height);
-            int stepsCount = (int)(stairsHeight / stepsGap);
-            double stepsDistance = (stepsGap * (stepsCount - 1)) +
-                                   (stepHeight * stepsCount);
+            int stepsCount = (int)(stairsHeight / StepsGap);
+            double stepsDistance = (StepsGap * (stepsCount - 1)) +
+                                   (StepHeight * stepsCount);
             
             if (stepsDistance > stairsHeight)
             {
                 stepsCount--;
-                stepsDistance = (stepsGap * (stepsCount - 1)) +
-                                (stepHeight * stepsCount);
+                stepsDistance = (StepsGap * (stepsCount - 1)) +
+                                (StepHeight * stepsCount);
             }
 
             double initialDistanceStep = (stairsHeight - stepsDistance) / 2;
@@ -83,15 +91,15 @@
                 {
                     _ksConnector.CreateRectangle(
                         -stairsHeight + initialDistanceStep, yStart,
-                        stepHeight, -stepWidth, angle);
+                        StepHeight, -stepWidth, angle);
                 }
                 else
                 {
                     _ksConnector.CreateRectangle(-xStart, yStart,
-                        -stepHeight, -stepWidth, angle);
+                        -StepHeight, -stepWidth, angle);
                 }
 
-                xStart += stepsGap + stepHeight;
+                xStart += StepsGap + StepHeight;
             }
 
             _ksConnector.EndEdit();

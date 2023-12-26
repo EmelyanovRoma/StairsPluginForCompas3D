@@ -57,6 +57,24 @@
                 "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);*/
         }
 
+        private void NumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            _parameters.SetValue(
+                StairsParameterType.Width,
+                (int)StairsWidthNumericUpDown.Value);
+
+            StepLengthNumericUpDown.Value =
+                _parameters.GetValue(StairsParameterType.StepLength);
+
+            StringerWidthLimitLabel.Text =
+                $"{_parameters.GetMinValue(StairsParameterType.StringerWidth)}-".ToString()
+                + $"{_parameters.GetMaxValue(StairsParameterType.StringerWidth)}мм".ToString();
+
+            StepLengthLimitLabel.Text =
+                $"{_parameters.GetMinValue(StairsParameterType.StepLength)}-".ToString()
+                + $"{_parameters.GetMaxValue(StairsParameterType.StepLength)}мм".ToString();
+        }
+
         private void StairsHeightNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
             try
