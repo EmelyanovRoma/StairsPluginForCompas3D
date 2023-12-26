@@ -41,6 +41,11 @@
         private ksDocument2D _ksDocument2D;
 
         /// <summary>
+        /// Угол прямоугольника.
+        /// </summary>
+        private const int RectangleAngle = 0;
+
+        /// <summary>
         /// Стиль линии.
         /// </summary>
         private const int MainStyleLine = 1;
@@ -177,25 +182,23 @@
         /// <summary>
         /// Создать прямоугольник.
         /// </summary>
-        /// <param name="x">Координата вершины прямоугольника в точке x</param>
-        /// <param name="y">Координата вершины прямоугольника в точке y</param>
+        /// <param name="x">Координата вершины прямоугольника в точке x.</param>
+        /// <param name="y">Координата вершины прямоугольника в точке y.</param>
         /// <param name="width">Ширина прямоугольника.</param>
         /// <param name="height">Высота прямоугольника.</param>
-        /// <param name="angle">Угол прямоугольника.</param>
         public void CreateRectangle(
-            double x,
-            double y,
-            double width,
-            double height,
-            double angle)
+            int x,
+            int y,
+            int width,
+            int height)
         {
-            var paramRectangle = 
+            var paramRectangle =
                 (ksRectangleParam)_ksObject.GetParamStruct(91);
             paramRectangle.x = x;
             paramRectangle.y = y;
             paramRectangle.width = width;
             paramRectangle.height = height;
-            paramRectangle.ang = angle;
+            paramRectangle.ang = RectangleAngle;
             paramRectangle.style = MainStyleLine;
 
             _ksDocument2D.ksRectangle(paramRectangle);

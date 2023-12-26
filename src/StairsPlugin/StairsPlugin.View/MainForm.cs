@@ -32,7 +32,15 @@
         /// </summary>
         private readonly Color _defaultBackColor = Color.White;
 
+        /// <summary>
+        /// Словарь ошибок.
+        /// </summary>
         private readonly Dictionary<NumericUpDown, string> _numericUpDownError;
+
+        /// <summary>
+        /// Словарь NumericUpDown.
+        /// </summary>
+        private readonly Dictionary<NumericUpDown, StairsParameterType> _numericUpDown;
 
         /// <summary>
         /// Конструктор главной формы.
@@ -48,108 +56,116 @@
                 { StringerWidthNumericUpDown, "" },
                 { StepLengthNumericUpDown, "" }
             };
+
+            _numericUpDown = new Dictionary<NumericUpDown, StairsParameterType>
+            {
+                { StairsHeightNumericUpDown, StairsParameterType.Height },
+                { StairsWidthNumericUpDown, StairsParameterType.Width },
+                { StairsThicknessNumericUpDown, StairsParameterType.Thickness },
+                { StringerWidthNumericUpDown, StairsParameterType.StringerWidth },
+                { StepLengthNumericUpDown, StairsParameterType.StepLength }
+            };
         }
 
         private void BuildButton_Click(object sender, EventArgs e)
         {
             _builder.BuildStairs(_parameters);
-            /*MessageBox.Show("Ширина балки W1: Значение не принадлежит диапазону допустимых значений.",
-                "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);*/
         }
 
         private void NumericUpDown_ValueChanged(object sender, EventArgs e)
         {
-            _parameters.SetValue(
-                StairsParameterType.Width,
-                (int)StairsWidthNumericUpDown.Value);
+            var numericUpDown = (NumericUpDown)sender;
 
-            StepLengthNumericUpDown.Value =
-                _parameters.GetValue(StairsParameterType.StepLength);
-
-            StringerWidthLimitLabel.Text =
-                $"{_parameters.GetMinValue(StairsParameterType.StringerWidth)}-".ToString()
-                + $"{_parameters.GetMaxValue(StairsParameterType.StringerWidth)}мм".ToString();
-
-            StepLengthLimitLabel.Text =
-                $"{_parameters.GetMinValue(StairsParameterType.StepLength)}-".ToString()
-                + $"{_parameters.GetMaxValue(StairsParameterType.StepLength)}мм".ToString();
-        }
-
-        private void StairsHeightNumericUpDown_ValueChanged(object sender, EventArgs e)
-        {
-            try
+            switch (numericUpDown.Name)
             {
-                _parameters.SetValue(
-                    StairsParameterType.Height,
-                    (int)StairsHeightNumericUpDown.Value);
-                StairsHeightNumericUpDown.BackColor = _defaultBackColor;
+                case "StairsHeightNumericUpDown":
+                {
+                    try
+                    {
+                        _parameters.SetValue(
+                            StairsParameterType.Height,
+                            (int)numericUpDown.Value);
+                        numericUpDown.BackColor = _defaultBackColor;
+                    }
+                    catch (ArgumentException exception)
+                    {
+                        numericUpDown.BackColor = _defaultBackColor;
+                        _numericUpDownError[numericUpDown] = exception.Message;
+                    }
+
+                    break;
+                }
+
+                case "StairsWidthNumericUpDown":
+                {
+                    _parameters.SetValue(
+                        StairsParameterType.Width,
+                        (int)numericUpDown.Value);
+
+                    StepLengthNumericUpDown.Value =
+                        _parameters.GetValue(StairsParameterType.StepLength);
+
+                    ChangeLimitLabelText(
+                        StringerWidthLimitLabel,
+                        StairsParameterType.StringerWidth);
+                    ChangeLimitLabelText(
+                        StepLengthLimitLabel,
+                        StairsParameterType.StepLength);
+                    break;
+                }
+
+                case "StairsThicknessNumericUpDown":
+                {
+                    _parameters.SetValue(
+                        StairsParameterType.Thickness,
+                        (int)numericUpDown.Value);
+                    break;
+                }
+
+                case "StringerWidthNumericUpDown":
+                {
+                    _parameters.SetValue(
+                        StairsParameterType.StringerWidth,
+                        (int)numericUpDown.Value);
+
+                    StairsWidthNumericUpDown.Value =
+                        _parameters.GetValue(StairsParameterType.Width);
+
+                    ChangeLimitLabelText(
+                        StringerWidthLimitLabel,
+                        StairsParameterType.StringerWidth);
+                    ChangeLimitLabelText(
+                        StepLengthLimitLabel,
+                        StairsParameterType.StepLength);
+                    break;
+                }
+
+                case "StepLengthNumericUpDown":
+                {
+                    _parameters.SetValue(
+                        StairsParameterType.StepLength,
+                        (int)numericUpDown.Value);
+
+                    StairsWidthNumericUpDown.Value =
+                        _parameters.GetValue(StairsParameterType.Width);
+
+                    ChangeLimitLabelText(
+                        StringerWidthLimitLabel,
+                        StairsParameterType.StringerWidth);
+                    ChangeLimitLabelText(
+                        StepLengthLimitLabel,
+                        StairsParameterType.StepLength);
+                    break;
+                }
             }
-            catch (ArgumentException exception)
-            {
-                StairsHeightNumericUpDown.BackColor = _defaultBackColor;
-                _numericUpDownError[StairsHeightNumericUpDown] = exception.Message;
-            }
         }
 
-        private void StairsWidthNumericUpDown_ValueChanged(object sender, EventArgs e)
+        private void ChangeLimitLabelText(
+            Label label,
+            StairsParameterType type)
         {
-            _parameters.SetValue(
-                StairsParameterType.Width,
-                (int)StairsWidthNumericUpDown.Value);
-
-            StepLengthNumericUpDown.Value =
-                _parameters.GetValue(StairsParameterType.StepLength);
-
-            StringerWidthLimitLabel.Text =
-                $"{_parameters.GetMinValue(StairsParameterType.StringerWidth)}-".ToString()
-                + $"{_parameters.GetMaxValue(StairsParameterType.StringerWidth)}мм".ToString();
-
-            StepLengthLimitLabel.Text =
-                $"{_parameters.GetMinValue(StairsParameterType.StepLength)}-".ToString()
-                + $"{_parameters.GetMaxValue(StairsParameterType.StepLength)}мм".ToString();
-        }
-
-        private void StairsThicknessNumericUpDown_ValueChanged(object sender, EventArgs e)
-        {
-            _parameters.SetValue(
-                StairsParameterType.Thickness,
-                (int)StairsThicknessNumericUpDown.Value);
-        }
-
-        private void StringerWidthNumericUpDown_ValueChanged(object sender, EventArgs e)
-        {
-            _parameters.SetValue(
-                StairsParameterType.StringerWidth,
-                (int)StringerWidthNumericUpDown.Value);
-
-            StairsWidthNumericUpDown.Value =
-                _parameters.GetValue(StairsParameterType.Width);
-
-            StringerWidthLimitLabel.Text =
-                $"{_parameters.GetMinValue(StairsParameterType.StringerWidth)}-".ToString()
-                + $"{_parameters.GetMaxValue(StairsParameterType.StringerWidth)}мм".ToString();
-
-            StepLengthLimitLabel.Text =
-                $"{_parameters.GetMinValue(StairsParameterType.StepLength)}-".ToString()
-                + $"{_parameters.GetMaxValue(StairsParameterType.StepLength)}мм".ToString();
-        }
-
-        private void StepLengthNumericUpDown_ValueChanged(object sender, EventArgs e)
-        {
-            _parameters.SetValue(
-                StairsParameterType.StepLength,
-                (int)StepLengthNumericUpDown.Value);
-
-            StairsWidthNumericUpDown.Value =
-                _parameters.GetValue(StairsParameterType.Width);
-
-            StringerWidthLimitLabel.Text =
-                $"{_parameters.GetMinValue(StairsParameterType.StringerWidth)}-".ToString()
-                + $"{_parameters.GetMaxValue(StairsParameterType.StringerWidth)}мм".ToString();
-
-            StepLengthLimitLabel.Text =
-                $"{_parameters.GetMinValue(StairsParameterType.StepLength)}-".ToString()
-                + $"{_parameters.GetMaxValue(StairsParameterType.StepLength)}мм".ToString();
+            label.Text = $"{_parameters.GetMinValue(type)}-".ToString()
+                         + $"{_parameters.GetMaxValue(type)}мм".ToString();
         }
     }
 }
