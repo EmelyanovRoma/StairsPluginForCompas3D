@@ -11,7 +11,8 @@
         /// <summary>
         /// Словарь, содержащий параметры лестницы.
         /// </summary>
-        private readonly Dictionary<StairsParameterType, StairsParameter> _stairsParameters =
+        private readonly Dictionary<StairsParameterType,
+            StairsParameter> _stairsParameters =
             new Dictionary<StairsParameterType, StairsParameter>
             {
                 {
@@ -81,38 +82,44 @@
             CrossValidation(type, value);
             _stairsParameters[type].Value = value;
 
-            if (type == StairsParameterType.Width)
+            switch (type)
             {
-                RecalculateStepLength();
-                RecalculateStringerWidth();
+                case StairsParameterType.Width:
+                {
+                    RecalculateStepLength();
 
-                _stairsParameters[StairsParameterType.StepLength].MaxValue =
-                    _stairsParameters[type].MaxValue
-                    - (_stairsParameters[StairsParameterType.StringerWidth].Value * 2);
-                _stairsParameters[StairsParameterType.StringerWidth].MaxValue =
-                    (_stairsParameters[type].MaxValue
-                     - _stairsParameters[StairsParameterType.StepLength].
-                         MaxValue) / 2;
-            }
+                    if (_stairsParameters[type].Value > 940)
+                    {
+                        var newStringerWidthMaxValue =
+                            (_stairsParameters[type].MaxValue -
+                             _stairsParameters[StairsParameterType.StepLength].Value) / 2;
 
-            if (type == StairsParameterType.StepLength)
-            {
-                RecalculateStairsWidth();
-                RecalculateStringerWidth();
-            }
+                        _stairsParameters[StairsParameterType.StringerWidth].MaxValue =
+                            newStringerWidthMaxValue > 50 ? 50 : newStringerWidthMaxValue;
+                    }
+                    else
+                    {
+                        _stairsParameters[StairsParameterType.StringerWidth].MaxValue = 50;
+                    }
 
-            if (type == StairsParameterType.StringerWidth)
-            {
-                RecalculateStairsWidth();
-                RecalculateStringerWidth();
+                    break;
+                }
 
-                _stairsParameters[StairsParameterType.StepLength].MaxValue =
-                    _stairsParameters[StairsParameterType.Width].MaxValue
-                    - (_stairsParameters[type].Value * 2);
-                /*_stairsParameters[type].MaxValue =
-                    (_stairsParameters[StairsParameterType.Width].MaxValue
-                     - _stairsParameters[StairsParameterType.StepLength].
-                         MaxValue) / 2;*/
+                case StairsParameterType.StepLength:
+                {
+                    RecalculateStairsWidth();
+                    break;
+                }
+
+                case StairsParameterType.StringerWidth:
+                {
+                    RecalculateStairsWidth();
+
+                    _stairsParameters[StairsParameterType.StepLength].MaxValue =
+                        _stairsParameters[StairsParameterType.Width].MaxValue
+                        - (2 * _stairsParameters[type].Value);
+                    break;
+                }
             }
         }
 
@@ -134,16 +141,6 @@
             _stairsParameters[StairsParameterType.StepLength].Value =
                 _stairsParameters[StairsParameterType.Width].Value -
                 (2 * _stairsParameters[StairsParameterType.StringerWidth].Value);
-        }
-
-        /// <summary>
-        /// Пересчитывает ширину балки.
-        /// </summary>
-        private void RecalculateStringerWidth()
-        {
-            _stairsParameters[StairsParameterType.StringerWidth].Value =
-                (_stairsParameters[StairsParameterType.Width].Value -
-                 _stairsParameters[StairsParameterType.StepLength].Value) / 2;
         }
 
         /// <summary>

@@ -66,7 +66,7 @@
                     (int)StairsHeightNumericUpDown.Value);
                 StairsHeightNumericUpDown.BackColor = _defaultBackColor;
             }
-            catch (Exception exception)
+            catch (ArgumentException exception)
             {
                 StairsHeightNumericUpDown.BackColor = _defaultBackColor;
                 _numericUpDownError[StairsHeightNumericUpDown] = exception.Message;
@@ -83,11 +83,11 @@
                 _parameters.GetValue(StairsParameterType.StepLength);
 
             StringerWidthLimitLabel.Text =
-                $"{_parameters.GetMinValue(StairsParameterType.StringerWidth)} - ".ToString()
+                $"{_parameters.GetMinValue(StairsParameterType.StringerWidth)}-".ToString()
                 + $"{_parameters.GetMaxValue(StairsParameterType.StringerWidth)}мм".ToString();
 
             StepLengthLimitLabel.Text =
-                $"{_parameters.GetMinValue(StairsParameterType.StepLength)} - ".ToString()
+                $"{_parameters.GetMinValue(StairsParameterType.StepLength)}-".ToString()
                 + $"{_parameters.GetMaxValue(StairsParameterType.StepLength)}мм".ToString();
         }
 
@@ -108,11 +108,11 @@
                 _parameters.GetValue(StairsParameterType.Width);
 
             StringerWidthLimitLabel.Text =
-                $"{_parameters.GetMinValue(StairsParameterType.StringerWidth)} - ".ToString()
+                $"{_parameters.GetMinValue(StairsParameterType.StringerWidth)}-".ToString()
                 + $"{_parameters.GetMaxValue(StairsParameterType.StringerWidth)}мм".ToString();
 
             StepLengthLimitLabel.Text =
-                $"{_parameters.GetMinValue(StairsParameterType.StepLength)} - ".ToString()
+                $"{_parameters.GetMinValue(StairsParameterType.StepLength)}-".ToString()
                 + $"{_parameters.GetMaxValue(StairsParameterType.StepLength)}мм".ToString();
         }
 
@@ -126,11 +126,11 @@
                 _parameters.GetValue(StairsParameterType.Width);
 
             StringerWidthLimitLabel.Text =
-                $"{_parameters.GetMinValue(StairsParameterType.StringerWidth)} - ".ToString()
+                $"{_parameters.GetMinValue(StairsParameterType.StringerWidth)}-".ToString()
                 + $"{_parameters.GetMaxValue(StairsParameterType.StringerWidth)}мм".ToString();
 
             StepLengthLimitLabel.Text =
-                $"{_parameters.GetMinValue(StairsParameterType.StepLength)} - ".ToString()
+                $"{_parameters.GetMinValue(StairsParameterType.StepLength)}-".ToString()
                 + $"{_parameters.GetMaxValue(StairsParameterType.StepLength)}мм".ToString();
         }
     }
