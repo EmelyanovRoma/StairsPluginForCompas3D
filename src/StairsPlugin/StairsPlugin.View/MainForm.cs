@@ -25,7 +25,7 @@
         /// <summary>
         /// Цвет numericUpDown при наличии ошибки.
         /// </summary>
-        private readonly Color _errorBackColor = Color.LightPink;
+        private readonly Color _errorBackColor = Color.LightCoral;
 
         /// <summary>
         /// Стандартный цвет numericUpDown.
@@ -89,7 +89,7 @@
                     }
                     catch (ArgumentException exception)
                     {
-                        numericUpDown.BackColor = _defaultBackColor;
+                        numericUpDown.BackColor = _errorBackColor;
                         _numericUpDownError[numericUpDown] = exception.Message;
                     }
 
@@ -124,16 +124,14 @@
 
                 case "StringerWidthNumericUpDown":
                 {
-                    _parameters.SetValue(
-                        StairsParameterType.StringerWidth,
-                        (int)numericUpDown.Value);
+                    SetParameterValue(numericUpDown);
 
                     StairsWidthNumericUpDown.Value =
                         _parameters.GetValue(StairsParameterType.Width);
 
                     ChangeLimitLabelText(
                         StringerWidthLimitLabel,
-                        StairsParameterType.StringerWidth);
+                        _numericUpDown[numericUpDown]);
                     ChangeLimitLabelText(
                         StepLengthLimitLabel,
                         StairsParameterType.StepLength);
@@ -157,6 +155,23 @@
                         StairsParameterType.StepLength);
                     break;
                 }
+            }
+        }
+
+        private void SetParameterValue(NumericUpDown numericUpDown)
+        {
+            try
+            {
+                _parameters.SetValue(
+                    _numericUpDown[numericUpDown],
+                    (int)numericUpDown.Value);
+                numericUpDown.BackColor = _defaultBackColor;
+                _numericUpDownError[numericUpDown] = "";
+            }
+            catch (ArgumentException exception)
+            {
+                numericUpDown.BackColor = _errorBackColor;
+                _numericUpDownError[numericUpDown] = exception.Message;
             }
         }
 

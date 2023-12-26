@@ -153,7 +153,7 @@
                 if (value < _stairsParameters[type].MinValue
                     || value > _stairsParameters[type].MaxValue)
                 {
-                    throw new Exception(
+                    throw new ArgumentException(
                         $"Длина ступени должна быть в диапазоне"
                         + $" {_stairsParameters[type].MinValue} -"
                         + $" {_stairsParameters[type].MaxValue} мм");
@@ -165,7 +165,7 @@
                 if (value < _stairsParameters[type].MinValue
                     || value > _stairsParameters[type].MaxValue)
                 {
-                    throw new Exception(
+                    throw new ArgumentException(
                         $"Ширина балки должна быть в диапазоне"
                         + $" {_stairsParameters[type].MinValue} -"
                         + $" {_stairsParameters[type].MaxValue} мм");
