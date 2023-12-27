@@ -48,7 +48,7 @@
             get => _maxValue;
             set
             {
-                if (_maxValue < MinValue)
+                if (value < MinValue)
                 {
                     throw new ArgumentException(
                         $"Максимальное значение не должно быть "
@@ -67,13 +67,14 @@
             get => _value;
             set
             {
-                _value = value;
-                if (!Validate())
+                if (!Validate(value))
                 {
                     throw new ArgumentException(
                         $"Значение не входит в диапазон "
                         + $"допустимых значений {MinValue} - {MaxValue}");
                 }
+
+                _value = value;
             }
         }
 
@@ -83,9 +84,9 @@
         /// </summary>
         /// <returns>True, если текущее значение параметра принадлежит
         /// диапазону допустимых значений.</returns>
-        private bool Validate()
+        private bool Validate(int value)
         {
-            return _value >= MinValue && _value <= MaxValue;
+            return value >= MinValue && value <= MaxValue;
         }
     }
 }
