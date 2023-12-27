@@ -31,11 +31,6 @@
         }
 
         /// <summary>
-        /// Создает пустой экземпляр <see cref="StairsParameter"/>.
-        /// </summary>
-        public StairsParameter() { }
-
-        /// <summary>
         /// Задает или возвращает минимальное значение параметра.
         /// </summary>
         public int MinValue { get; private set; }
