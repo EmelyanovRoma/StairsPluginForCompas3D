@@ -85,7 +85,6 @@
             switch (type)
             {
                 case StairsParameterType.Width:
-                {
                     RecalculateStepLength();
 
                     if (_stairsParameters[type].Value > 940)
@@ -108,23 +107,18 @@
                          - _stairsParameters[StairsParameterType.StepLength].Value) / 2;
 
                     break;
-                }
 
                 case StairsParameterType.StepLength:
-                {
                     RecalculateStairsWidth();
                     break;
-                }
 
                 case StairsParameterType.StringerWidth:
-                {
                     RecalculateStairsWidth();
 
                     _stairsParameters[StairsParameterType.StepLength].MaxValue =
                         _stairsParameters[StairsParameterType.Width].MaxValue
                         - (2 * _stairsParameters[type].Value);
                     break;
-                }
             }
         }
 
