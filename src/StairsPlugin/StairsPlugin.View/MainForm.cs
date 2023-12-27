@@ -69,7 +69,10 @@
 
         private void BuildButton_Click(object sender, EventArgs e)
         {
-            _builder.BuildStairs(_parameters);
+            if (CheckFormsOnErrors())
+            {
+                _builder.BuildStairs(_parameters);
+            }
         }
 
         private void NumericUpDown_ValueChanged(object sender, EventArgs e)
@@ -179,6 +182,28 @@
         {
             label.Text = $"{_parameters.GetMinValue(type)}-".ToString()
                          + $"{_parameters.GetMaxValue(type)}мм".ToString();
+        }
+
+        private bool CheckFormsOnErrors()
+        {
+            var allErrors = "";
+
+            foreach (var error in _numericUpDownError)
+            {
+                if (error.Value != "")
+                {
+                    allErrors += error.Value + "\n";
+                }
+            }
+
+            if (allErrors != "")
+            {
+                MessageBox.Show(
+                    allErrors, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            return true;
         }
     }
 }
