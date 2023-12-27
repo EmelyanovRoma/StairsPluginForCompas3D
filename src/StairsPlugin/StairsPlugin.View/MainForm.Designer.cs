@@ -107,6 +107,7 @@
             0,
             0});
             this.StairsHeightNumericUpDown.ValueChanged += new System.EventHandler(this.NumericUpDown_ValueChanged);
+            this.StairsHeightNumericUpDown.Leave += new System.EventHandler(this.NumericUpDown_Leave);
             // 
             // StairsHeightLimitLabel
             // 
@@ -150,6 +151,7 @@
             0,
             0});
             this.StairsWidthNumericUpDown.ValueChanged += new System.EventHandler(this.NumericUpDown_ValueChanged);
+            this.StairsWidthNumericUpDown.Leave += new System.EventHandler(this.NumericUpDown_Leave);
             // 
             // StairsWidthLimitLabel
             // 
@@ -193,6 +195,7 @@
             0,
             0});
             this.StairsThicknessNumericUpDown.ValueChanged += new System.EventHandler(this.NumericUpDown_ValueChanged);
+            this.StairsThicknessNumericUpDown.Leave += new System.EventHandler(this.NumericUpDown_Leave);
             // 
             // StairsThicknessLimitLabel
             // 
@@ -237,6 +240,7 @@
             0,
             0});
             this.StringerWidthNumericUpDown.ValueChanged += new System.EventHandler(this.NumericUpDown_ValueChanged);
+            this.StringerWidthNumericUpDown.Leave += new System.EventHandler(this.NumericUpDown_Leave);
             // 
             // StringerWidthLimitLabel
             // 
@@ -271,6 +275,7 @@
             0,
             0});
             this.StepLengthNumericUpDown.ValueChanged += new System.EventHandler(this.NumericUpDown_ValueChanged);
+            this.StepLengthNumericUpDown.Leave += new System.EventHandler(this.NumericUpDown_Leave);
             // 
             // StepLengthLabel
             // 

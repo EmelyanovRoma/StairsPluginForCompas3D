@@ -107,6 +107,8 @@
 
                     StepLengthNumericUpDown.Value =
                         _parameters.GetValue(StairsParameterType.StepLength);
+                    StringerWidthNumericUpDown.Value =
+                        _parameters.GetValue(StairsParameterType.StringerWidth);
 
                     ChangeLimitLabelText(
                         StringerWidthLimitLabel,
@@ -199,11 +201,24 @@
             if (allErrors != "")
             {
                 MessageBox.Show(
-                    allErrors, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    allErrors,
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
                 return false;
             }
 
             return true;
+        }
+
+        private void NumericUpDown_Leave(object sender, EventArgs e)
+        {
+            var numericUpDown = (NumericUpDown)sender;
+            if (numericUpDown.Text == "")
+            {
+                numericUpDown.Text = _parameters.GetValue(
+                    _numericUpDown[numericUpDown]).ToString();
+            }
         }
     }
 }

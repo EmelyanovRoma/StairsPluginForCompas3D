@@ -99,8 +99,13 @@
                     }
                     else
                     {
-                        _stairsParameters[StairsParameterType.StringerWidth].MaxValue = 50;
+                        _stairsParameters[
+                            StairsParameterType.StringerWidth].MaxValue = 50;
                     }
+
+                    _stairsParameters[StairsParameterType.StringerWidth].Value =
+                        (_stairsParameters[StairsParameterType.Width].Value
+                         - _stairsParameters[StairsParameterType.StepLength].Value) / 2;
 
                     break;
                 }
