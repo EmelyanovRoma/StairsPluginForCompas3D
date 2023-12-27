@@ -140,9 +140,7 @@
 
                 case "StepLengthNumericUpDown":
                 {
-                    _parameters.SetValue(
-                        StairsParameterType.StepLength,
-                        (int)numericUpDown.Value);
+                    SetParameterValue(numericUpDown);
 
                     StairsWidthNumericUpDown.Value =
                         _parameters.GetValue(StairsParameterType.Width);
@@ -152,7 +150,7 @@
                         StairsParameterType.StringerWidth);
                     ChangeLimitLabelText(
                         StepLengthLimitLabel,
-                        StairsParameterType.StepLength);
+                        _numericUpDown[numericUpDown]);
                     break;
                 }
             }

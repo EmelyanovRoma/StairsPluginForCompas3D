@@ -94,7 +94,7 @@
             0,
             0});
             this.StairsHeightNumericUpDown.Minimum = new decimal(new int[] {
-            555,
+            1000,
             0,
             0,
             0});

@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StairsPlugin.Model", "Stair
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StairsPlugin.KompasWrapper", "StairsPlugin.KompasWrapper\StairsPlugin.KompasWrapper.csproj", "{AF3190E0-29F2-4903-AFDD-ABFD83A116D0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StairsPlugin.UnitTests", "Testing\StairsPlugin.UnitTests\StairsPlugin.UnitTests.csproj", "{FFFE1B4B-3887-42A9-AE2F-1D6629ECFED3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{AF3190E0-29F2-4903-AFDD-ABFD83A116D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AF3190E0-29F2-4903-AFDD-ABFD83A116D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AF3190E0-29F2-4903-AFDD-ABFD83A116D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FFFE1B4B-3887-42A9-AE2F-1D6629ECFED3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FFFE1B4B-3887-42A9-AE2F-1D6629ECFED3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FFFE1B4B-3887-42A9-AE2F-1D6629ECFED3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FFFE1B4B-3887-42A9-AE2F-1D6629ECFED3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
