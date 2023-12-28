@@ -147,6 +147,7 @@
         /// </summary>
         private void CrossValidation(StairsParameterType type, int value)
         {
+            // TODO: duplication
             if (type == StairsParameterType.StepLength)
             {
                 if (value < _stairsParameters[type].MinValue
