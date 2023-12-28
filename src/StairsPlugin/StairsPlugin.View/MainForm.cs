@@ -35,12 +35,12 @@
         /// <summary>
         /// Словарь ошибок.
         /// </summary>
-        private readonly Dictionary<NumericUpDown, string> _errorsDictionary;
+        private readonly Dictionary<NumericUpDown, string> _numericUpDownErrors;
 
         /// <summary>
-        /// Словарь NumericUpDown.
+        /// Словарь NumericUpDown по StairsParametersType.
         /// </summary>
-        private readonly Dictionary<NumericUpDown, StairsParameterType> _numericUpDownDictionary;
+        private readonly Dictionary<NumericUpDown, StairsParameterType> _numericUpDownType;
 
         /// <summary>
         /// Конструктор главной формы.
@@ -48,7 +48,7 @@
         public MainForm()
         {
             InitializeComponent();
-            _errorsDictionary = new Dictionary<NumericUpDown, string>
+            _numericUpDownErrors = new Dictionary<NumericUpDown, string>
             {
                 { StairsHeightNumericUpDown, "" },
                 { StairsWidthNumericUpDown, "" },
@@ -57,7 +57,7 @@
                 { StepLengthNumericUpDown, "" }
             };
 
-            _numericUpDownDictionary = new Dictionary<NumericUpDown, StairsParameterType>
+            _numericUpDownType = new Dictionary<NumericUpDown, StairsParameterType>
             {
                 { StairsHeightNumericUpDown, StairsParameterType.Height },
                 { StairsWidthNumericUpDown, StairsParameterType.Width },
@@ -67,27 +67,41 @@
             };
         }
 
+        /// <summary>
+        /// Кнопка построения лестницы.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BuildButton_Click(object sender, EventArgs e)
         {
-            if (CheckFormsOnErrors())
+            if (CheckFormOnErrors())
             {
                 _builder.BuildStairs(_parameters);
             }
         }
 
+        /// <summary>
+        /// Обработчик изменения значения в NumericUpDown элементе.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void NumericUpDown_ValueChanged(object sender, EventArgs e)
         {
             var numericUpDown = (NumericUpDown)sender;
 
-            switch (numericUpDown.Name)
+            // TODO: refactor
+            switch (_numericUpDownType[numericUpDown])
             {
-                case "StairsHeightNumericUpDown":
+                case StairsParameterType.Height:
+                {
                     _parameters.SetValue(
                         StairsParameterType.Height,
                         (int)numericUpDown.Value);
                     break;
+                }
 
-                case "StairsWidthNumericUpDown":
+                case StairsParameterType.Width:
+                {
                     _parameters.SetValue(
                         StairsParameterType.Width,
                         (int)numericUpDown.Value);
@@ -104,29 +118,36 @@
                         StepLengthLimitLabel,
                         StairsParameterType.StepLength);
                     break;
+                }
 
-                case "StairsThicknessNumericUpDown":
+                case StairsParameterType.Thickness:
+                {
                     _parameters.SetValue(
                         StairsParameterType.Thickness,
                         (int)numericUpDown.Value);
 
                     break;
+                }
 
-                case "StringerWidthNumericUpDown":
+                case StairsParameterType.StringerWidth:
+                {
                     SetParameterValue(numericUpDown);
                     StairsWidthNumericUpDown.Value =
                         _parameters.GetValue(StairsParameterType.Width);
 
                     ChangeLimitLabelText(
                         StringerWidthLimitLabel,
-                        _numericUpDownDictionary[numericUpDown]);
+                        _numericUpDownType[numericUpDown]);
                     ChangeLimitLabelText(
                         StepLengthLimitLabel,
                         StairsParameterType.StepLength);
 
                     break;
 
-                case "StepLengthNumericUpDown":
+                }
+
+                case StairsParameterType.StepLength:
+                {
                     SetParameterValue(numericUpDown);
                     StairsWidthNumericUpDown.Value =
                         _parameters.GetValue(StairsParameterType.Width);
@@ -136,11 +157,19 @@
                         StairsParameterType.StringerWidth);
                     ChangeLimitLabelText(
                         StepLengthLimitLabel,
-                        _numericUpDownDictionary[numericUpDown]);
+                        _numericUpDownType[numericUpDown]);
                     break;
+                }
             }
         }
 
+        // TODO: rsdn
+
+        /// <summary>
+        /// Обработчик события, вызывающийся при уходе с NumericUpDown.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void NumericUpDown_Leave(object sender, EventArgs e)
         {
             var numericUpDown = (NumericUpDown)sender;
@@ -148,7 +177,7 @@
             if (numericUpDown.Text == "")
             {
                 numericUpDown.Text = _parameters.GetValue(
-                    _numericUpDownDictionary[numericUpDown]).ToString();
+                    _numericUpDownType[numericUpDown]).ToString();
             }
         }
 
@@ -161,16 +190,16 @@
             try
             {
                 _parameters.SetValue(
-                    _numericUpDownDictionary[numericUpDown],
+                    _numericUpDownType[numericUpDown],
                     (int)numericUpDown.Value);
 
                 numericUpDown.BackColor = _defaultBackColor;
-                _errorsDictionary[numericUpDown] = "";
+                _numericUpDownErrors[numericUpDown] = "";
             }
             catch (ArgumentException exception)
             {
                 numericUpDown.BackColor = _errorBackColor;
-                _errorsDictionary[numericUpDown] = exception.Message;
+                _numericUpDownErrors[numericUpDown] = exception.Message;
             }
         }
 
@@ -189,11 +218,11 @@
         /// Проверяет NumericUpDown элементы на ошибки заполнения.
         /// </summary>
         /// <returns>false - есть ошибки; true- ошибок нет.</returns>
-        private bool CheckFormsOnErrors()
+        private bool CheckFormOnErrors()
         {
             var allErrors = "";
 
-            foreach (var error in _errorsDictionary)
+            foreach (var error in _numericUpDownErrors)
             {
                 if (error.Value != "")
                 {
