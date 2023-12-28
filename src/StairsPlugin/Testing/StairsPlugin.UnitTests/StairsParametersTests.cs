@@ -54,6 +54,8 @@
         }
 
         [Test(Description = "Positive set value test.")]
+        [TestCase(StairsParameterType.Height, 2000,
+            TestName = "Assigning set value of stairs height")]
         [TestCase(StairsParameterType.Width, 500,
             TestName = "Assigning set value of stairs width")]
         [TestCase(StairsParameterType.StringerWidth, 30,
