@@ -28,6 +28,16 @@
         /// <summary>
         /// Длина ступени.
         /// </summary>
-        StepLength
+        StepLength,
+
+        /// <summary>
+        /// Высота ступени.
+        /// </summary>
+        StepHeight,
+
+        /// <summary>
+        /// Расстояние между ступенями.
+        /// </summary>
+        StepGap
     }
 }

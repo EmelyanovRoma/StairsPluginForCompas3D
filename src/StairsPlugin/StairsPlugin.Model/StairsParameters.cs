@@ -34,6 +34,14 @@
                 {
                     StairsParameterType.StepLength, new StairsParameter(
                         960, 150, 150)
+                },
+                {
+                    StairsParameterType.StepHeight, new StairsParameter(
+                        50, 20, 20)
+                },
+                {
+                    StairsParameterType.StepGap, new StairsParameter(
+                        350, 250, 300)
                 }
             };
 
