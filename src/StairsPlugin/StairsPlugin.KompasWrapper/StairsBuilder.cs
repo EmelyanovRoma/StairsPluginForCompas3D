@@ -67,15 +67,19 @@
                 StairsParameterType.StepLength);
             var stairsHeight = stairsParameters.GetValue(
                 StairsParameterType.Height);
+            var stepHeight = stairsParameters.GetValue(
+                StairsParameterType.StepHeight);
+            var stepGap = stairsParameters.GetValue(
+                StairsParameterType.StepGap);
 
-            int stepsCount = stairsHeight / StepsGap;
-            var stepsDistance = (StepsGap * (stepsCount - 1)) +
-                                   (StepHeight * stepsCount);
+            int stepsCount = stairsHeight / stepGap;
+            var stepsDistance = (stepGap * (stepsCount - 1)) +
+                                   (stepHeight * stepsCount);
             if (stepsDistance > stairsHeight)
             {
                 stepsCount--;
-                stepsDistance = (StepsGap * (stepsCount - 1)) +
-                                (StepHeight * stepsCount);
+                stepsDistance = (stepGap * (stepsCount - 1)) +
+                                (stepHeight * stepsCount);
             }
 
             var initialDistanceStep = (stairsHeight - stepsDistance) / 2;
@@ -88,15 +92,15 @@
                 {
                     _ksConnector.CreateRectangle(
                         -stairsHeight + initialDistanceStep, yStart,
-                        StepHeight, -stepWidth);
+                        stepHeight, -stepWidth);
                 }
                 else
                 {
                     _ksConnector.CreateRectangle(-xStart, yStart,
-                        -StepHeight, -stepWidth);
+                        -stepHeight, -stepWidth);
                 }
 
-                xStart += StepsGap + StepHeight;
+                xStart += stepGap + stepHeight;
             }
 
             _ksConnector.EndEdit();
