@@ -46,28 +46,36 @@
             this.StepLengthNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.StepLengthLabel = new System.Windows.Forms.Label();
             this.StepLengthLimitLabel = new System.Windows.Forms.Label();
+            this.StepHeightLabel = new System.Windows.Forms.Label();
+            this.StepsGapLabel = new System.Windows.Forms.Label();
+            this.StepHeightNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.StepHeightLimitLabel = new System.Windows.Forms.Label();
+            this.StepsGapNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.StepsGapLimitLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.StairsPlanPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.StairsHeightNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.StairsWidthNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.StairsThicknessNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.StringerWidthNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.StepLengthNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.StepHeightNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.StepsGapNumericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // StairsPlanPictureBox
             // 
             this.StairsPlanPictureBox.BackgroundImage = global::StairsPlugin.View.Properties.Resources.stairs_plan;
             this.StairsPlanPictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.StairsPlanPictureBox.Location = new System.Drawing.Point(336, 12);
+            this.StairsPlanPictureBox.Location = new System.Drawing.Point(319, 12);
             this.StairsPlanPictureBox.Name = "StairsPlanPictureBox";
-            this.StairsPlanPictureBox.Size = new System.Drawing.Size(247, 272);
+            this.StairsPlanPictureBox.Size = new System.Drawing.Size(264, 294);
             this.StairsPlanPictureBox.TabIndex = 0;
             this.StairsPlanPictureBox.TabStop = false;
             // 
             // BuildButton
             // 
             this.BuildButton.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.BuildButton.Location = new System.Drawing.Point(118, 247);
+            this.BuildButton.Location = new System.Drawing.Point(118, 269);
             this.BuildButton.Name = "BuildButton";
             this.BuildButton.Size = new System.Drawing.Size(100, 37);
             this.BuildButton.TabIndex = 1;
@@ -295,12 +303,102 @@
             this.StepLengthLimitLabel.TabIndex = 16;
             this.StepLengthLimitLabel.Text = "150-960мм";
             // 
+            // StepHeightLabel
+            // 
+            this.StepHeightLabel.AutoSize = true;
+            this.StepHeightLabel.Location = new System.Drawing.Point(5, 194);
+            this.StepHeightLabel.Name = "StepHeightLabel";
+            this.StepHeightLabel.Size = new System.Drawing.Size(97, 15);
+            this.StepHeightLabel.TabIndex = 17;
+            this.StepHeightLabel.Text = "Высота ступени:";
+            // 
+            // StepsGapLabel
+            // 
+            this.StepsGapLabel.AutoSize = true;
+            this.StepsGapLabel.Location = new System.Drawing.Point(5, 230);
+            this.StepsGapLabel.Name = "StepsGapLabel";
+            this.StepsGapLabel.Size = new System.Drawing.Size(110, 15);
+            this.StepsGapLabel.TabIndex = 18;
+            this.StepsGapLabel.Text = "Между ступенями:";
+            // 
+            // StepHeightNumericUpDown
+            // 
+            this.StepHeightNumericUpDown.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.StepHeightNumericUpDown.Location = new System.Drawing.Point(137, 194);
+            this.StepHeightNumericUpDown.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
+            this.StepHeightNumericUpDown.Maximum = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+            this.StepHeightNumericUpDown.Minimum = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
+            this.StepHeightNumericUpDown.Name = "StepHeightNumericUpDown";
+            this.StepHeightNumericUpDown.Size = new System.Drawing.Size(71, 23);
+            this.StepHeightNumericUpDown.TabIndex = 19;
+            this.StepHeightNumericUpDown.Value = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
+            // 
+            // StepHeightLimitLabel
+            // 
+            this.StepHeightLimitLabel.AutoSize = true;
+            this.StepHeightLimitLabel.Location = new System.Drawing.Point(214, 196);
+            this.StepHeightLimitLabel.Name = "StepHeightLimitLabel";
+            this.StepHeightLimitLabel.Size = new System.Drawing.Size(54, 15);
+            this.StepHeightLimitLabel.TabIndex = 20;
+            this.StepHeightLimitLabel.Text = "20-50мм";
+            // 
+            // StepsGapNumericUpDown
+            // 
+            this.StepsGapNumericUpDown.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.StepsGapNumericUpDown.Location = new System.Drawing.Point(137, 230);
+            this.StepsGapNumericUpDown.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
+            this.StepsGapNumericUpDown.Maximum = new decimal(new int[] {
+            350,
+            0,
+            0,
+            0});
+            this.StepsGapNumericUpDown.Minimum = new decimal(new int[] {
+            250,
+            0,
+            0,
+            0});
+            this.StepsGapNumericUpDown.Name = "StepsGapNumericUpDown";
+            this.StepsGapNumericUpDown.Size = new System.Drawing.Size(71, 23);
+            this.StepsGapNumericUpDown.TabIndex = 21;
+            this.StepsGapNumericUpDown.Value = new decimal(new int[] {
+            300,
+            0,
+            0,
+            0});
+            // 
+            // StepsGapLimitLabel
+            // 
+            this.StepsGapLimitLabel.AutoSize = true;
+            this.StepsGapLimitLabel.Location = new System.Drawing.Point(214, 232);
+            this.StepsGapLimitLabel.Name = "StepsGapLimitLabel";
+            this.StepsGapLimitLabel.Size = new System.Drawing.Size(66, 15);
+            this.StepsGapLimitLabel.TabIndex = 22;
+            this.StepsGapLimitLabel.Text = "250-350мм";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(595, 296);
+            this.ClientSize = new System.Drawing.Size(595, 311);
+            this.Controls.Add(this.StepsGapLimitLabel);
+            this.Controls.Add(this.StepsGapNumericUpDown);
+            this.Controls.Add(this.StepHeightLimitLabel);
+            this.Controls.Add(this.StepHeightNumericUpDown);
+            this.Controls.Add(this.StepsGapLabel);
+            this.Controls.Add(this.StepHeightLabel);
             this.Controls.Add(this.StepLengthLimitLabel);
             this.Controls.Add(this.StepLengthLabel);
             this.Controls.Add(this.StepLengthNumericUpDown);
@@ -333,6 +431,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.StairsThicknessNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.StringerWidthNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.StepLengthNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.StepHeightNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.StepsGapNumericUpDown)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -357,6 +457,12 @@
         private System.Windows.Forms.NumericUpDown StepLengthNumericUpDown;
         private System.Windows.Forms.Label StepLengthLabel;
         private System.Windows.Forms.Label StepLengthLimitLabel;
+        private System.Windows.Forms.Label StepHeightLabel;
+        private System.Windows.Forms.Label StepsGapLabel;
+        private System.Windows.Forms.NumericUpDown StepHeightNumericUpDown;
+        private System.Windows.Forms.Label StepHeightLimitLabel;
+        private System.Windows.Forms.NumericUpDown StepsGapNumericUpDown;
+        private System.Windows.Forms.Label StepsGapLimitLabel;
     }
 }
 
