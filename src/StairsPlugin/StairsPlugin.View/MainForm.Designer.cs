@@ -344,6 +344,8 @@
             0,
             0,
             0});
+            this.StepHeightNumericUpDown.ValueChanged += new System.EventHandler(this.NumericUpDown_ValueChanged);
+            this.StepHeightNumericUpDown.Leave += new System.EventHandler(this.NumericUpDown_Leave);
             // 
             // StepHeightLimitLabel
             // 
@@ -377,6 +379,8 @@
             0,
             0,
             0});
+            this.StepsGapNumericUpDown.ValueChanged += new System.EventHandler(this.NumericUpDown_ValueChanged);
+            this.StepsGapNumericUpDown.Leave += new System.EventHandler(this.NumericUpDown_Leave);
             // 
             // StepsGapLimitLabel
             // 

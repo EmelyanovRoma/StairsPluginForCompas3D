@@ -63,7 +63,9 @@
                 { StairsWidthNumericUpDown, StairsParameterType.Width },
                 { StairsThicknessNumericUpDown, StairsParameterType.Thickness },
                 { StringerWidthNumericUpDown, StairsParameterType.StringerWidth },
-                { StepLengthNumericUpDown, StairsParameterType.StepLength }
+                { StepLengthNumericUpDown, StairsParameterType.StepLength },
+                { StepHeightNumericUpDown, StairsParameterType.StepHeight },
+                { StepsGapNumericUpDown, StairsParameterType.StepGap }
             };
         }
 
@@ -143,7 +145,6 @@
                         StairsParameterType.StepLength);
 
                     break;
-
                 }
 
                 case StairsParameterType.StepLength:
@@ -158,6 +159,24 @@
                     ChangeLimitLabelText(
                         StepLengthLimitLabel,
                         _numericUpDownType[numericUpDown]);
+                    break;
+                }
+
+                case StairsParameterType.StepHeight:
+                {
+                    _parameters.SetValue(
+                        StairsParameterType.StepHeight,
+                        (int)numericUpDown.Value);
+
+                    break;
+                }
+
+                case StairsParameterType.StepGap:
+                {
+                    _parameters.SetValue(
+                        StairsParameterType.StepGap,
+                        (int)numericUpDown.Value);
+
                     break;
                 }
             }

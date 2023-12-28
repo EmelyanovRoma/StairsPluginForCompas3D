@@ -75,7 +75,8 @@
             int stepsCount = stairsHeight / stepGap;
             var stepsDistance = (stepGap * (stepsCount - 1)) +
                                    (stepHeight * stepsCount);
-            if (stepsDistance > stairsHeight)
+            
+            while (stepsDistance > stairsHeight)
             {
                 stepsCount--;
                 stepsDistance = (stepGap * (stepsCount - 1)) +
