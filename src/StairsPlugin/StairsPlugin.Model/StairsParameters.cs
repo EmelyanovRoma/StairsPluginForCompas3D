@@ -21,7 +21,7 @@
                 },
                 {
                     StairsParameterType.Width, new StairsParameter(
-                        1000, 190, 650)
+                        1000, 190, 200)
                 },
                 {
                     StairsParameterType.Thickness, new StairsParameter(
@@ -29,11 +29,11 @@
                 },
                 {
                     StairsParameterType.StringerWidth, new StairsParameter(
-                        50, 20, 35)
+                        50, 20, 25)
                 },
                 {
                     StairsParameterType.StepLength, new StairsParameter(
-                        960, 150, 580)
+                        960, 150, 150)
                 },
                 {
                     StairsParameterType.StepHeight, new StairsParameter(
@@ -93,6 +93,16 @@
             switch (type)
             {
                 case StairsParameterType.Width:
+                    if (_stairsParameters[type].Value -
+                        (2 * _stairsParameters[StairsParameterType.StringerWidth].Value) <
+                        _stairsParameters[StairsParameterType.StepLength].MinValue)
+                    {
+                        _stairsParameters[StairsParameterType.StringerWidth].Value -=
+                            (int)Math.Ceiling((decimal)(_stairsParameters[StairsParameterType.StepLength].MinValue -
+                            (_stairsParameters[type].Value -
+                            (2 * _stairsParameters[StairsParameterType.StringerWidth].Value))) / 2);
+                    }
+
                     RecalculateStepLength();
 
                     if (_stairsParameters[type].Value > 940)
