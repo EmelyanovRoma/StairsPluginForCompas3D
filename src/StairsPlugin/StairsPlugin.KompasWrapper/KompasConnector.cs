@@ -142,7 +142,7 @@
         }
 
         /// <summary>
-        /// Выбрать плоскость для эскиза.
+        /// Выбрать плоскость XOY для эскиза.
         /// </summary>
         /// <returns>Сущность с выбранной плоскостью.</returns>
         public ksEntity CreatePlaneXOY()
@@ -161,7 +161,7 @@
         }
 
         /// <summary>
-        /// Выбрать плоскость для эскиза.
+        /// Выбрать плоскость YOZ для эскиза.
         /// </summary>
         /// <returns>Сущность с выбранной плоскостью.</returns>
         public ksEntity CreatePlaneYOZ()

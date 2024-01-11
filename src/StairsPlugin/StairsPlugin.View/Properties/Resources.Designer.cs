@@ -69,5 +69,15 @@ namespace StairsPlugin.View.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap stairsPlan_new {
+            get {
+                object obj = ResourceManager.GetObject("stairsPlan_new", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

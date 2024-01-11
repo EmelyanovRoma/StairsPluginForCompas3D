@@ -17,30 +17,30 @@
             {
                 {
                     StairsParameterType.Height, new StairsParameter(
-                        10000, 1000, 1000)
+                        10000, 1000, 5000)
                 },
                 {
                     StairsParameterType.Width, new StairsParameter(
-                        1000, 190, 190)
+                        1000, 190, 650)
                 },
                 {
                     StairsParameterType.Thickness, new StairsParameter(
-                        50, 20, 20)
+                        50, 20, 35)
                 },
                 {
                     StairsParameterType.StringerWidth, new StairsParameter(
-                        50, 20, 20)
+                        50, 20, 35)
                 },
                 {
                     StairsParameterType.StepLength, new StairsParameter(
-                        960, 150, 150)
+                        960, 150, 580)
                 },
                 {
                     StairsParameterType.StepHeight, new StairsParameter(
                         50, 20, 20)
                 },
                 {
-                    StairsParameterType.StepGap, new StairsParameter(
+                    StairsParameterType.StepsGap, new StairsParameter(
                         350, 250, 300)
                 }
             };

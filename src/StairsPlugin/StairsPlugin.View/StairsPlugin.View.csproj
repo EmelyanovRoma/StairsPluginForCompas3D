@@ -102,6 +102,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\stairs_plan.png" />
+    <None Include="Resources\stairsPlan_new.png" />
     <Content Include="StairsPlugin_512x512.ico" />
   </ItemGroup>
   <ItemGroup>

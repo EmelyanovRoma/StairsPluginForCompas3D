@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            this.StairsPlanPictureBox = new System.Windows.Forms.PictureBox();
             this.BuildButton = new System.Windows.Forms.Button();
             this.StairsHeightLabel = new System.Windows.Forms.Label();
             this.StairsHeightNumericUpDown = new System.Windows.Forms.NumericUpDown();
@@ -52,7 +51,7 @@
             this.StepHeightLimitLabel = new System.Windows.Forms.Label();
             this.StepsGapNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.StepsGapLimitLabel = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.StairsPlanPictureBox)).BeginInit();
+            this.StairsPlanPictureBox = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.StairsHeightNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.StairsWidthNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.StairsThicknessNumericUpDown)).BeginInit();
@@ -60,17 +59,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.StepLengthNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.StepHeightNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.StepsGapNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.StairsPlanPictureBox)).BeginInit();
             this.SuspendLayout();
-            // 
-            // StairsPlanPictureBox
-            // 
-            this.StairsPlanPictureBox.BackgroundImage = global::StairsPlugin.View.Properties.Resources.stairs_plan;
-            this.StairsPlanPictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.StairsPlanPictureBox.Location = new System.Drawing.Point(319, 12);
-            this.StairsPlanPictureBox.Name = "StairsPlanPictureBox";
-            this.StairsPlanPictureBox.Size = new System.Drawing.Size(264, 294);
-            this.StairsPlanPictureBox.TabIndex = 0;
-            this.StairsPlanPictureBox.TabStop = false;
             // 
             // BuildButton
             // 
@@ -308,18 +298,18 @@
             this.StepHeightLabel.AutoSize = true;
             this.StepHeightLabel.Location = new System.Drawing.Point(5, 194);
             this.StepHeightLabel.Name = "StepHeightLabel";
-            this.StepHeightLabel.Size = new System.Drawing.Size(97, 15);
+            this.StepHeightLabel.Size = new System.Drawing.Size(115, 15);
             this.StepHeightLabel.TabIndex = 17;
-            this.StepHeightLabel.Text = "Высота ступени:";
+            this.StepHeightLabel.Text = "Высота ступени H1:";
             // 
             // StepsGapLabel
             // 
             this.StepsGapLabel.AutoSize = true;
             this.StepsGapLabel.Location = new System.Drawing.Point(5, 230);
             this.StepsGapLabel.Name = "StepsGapLabel";
-            this.StepsGapLabel.Size = new System.Drawing.Size(110, 15);
+            this.StepsGapLabel.Size = new System.Drawing.Size(109, 30);
             this.StepsGapLabel.TabIndex = 18;
-            this.StepsGapLabel.Text = "Между ступенями:";
+            this.StepsGapLabel.Text = "Расстояние между\r\nступенями H2:";
             // 
             // StepHeightNumericUpDown
             // 
@@ -327,7 +317,7 @@
             this.StepHeightNumericUpDown.Location = new System.Drawing.Point(137, 194);
             this.StepHeightNumericUpDown.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
             this.StepHeightNumericUpDown.Maximum = new decimal(new int[] {
-            50,
+            40,
             0,
             0,
             0});
@@ -354,7 +344,7 @@
             this.StepHeightLimitLabel.Name = "StepHeightLimitLabel";
             this.StepHeightLimitLabel.Size = new System.Drawing.Size(54, 15);
             this.StepHeightLimitLabel.TabIndex = 20;
-            this.StepHeightLimitLabel.Text = "20-50мм";
+            this.StepHeightLimitLabel.Text = "20-40мм";
             // 
             // StepsGapNumericUpDown
             // 
@@ -390,6 +380,16 @@
             this.StepsGapLimitLabel.Size = new System.Drawing.Size(66, 15);
             this.StepsGapLimitLabel.TabIndex = 22;
             this.StepsGapLimitLabel.Text = "250-350мм";
+            // 
+            // StairsPlanPictureBox
+            // 
+            this.StairsPlanPictureBox.BackgroundImage = global::StairsPlugin.View.Properties.Resources.stairsPlan_new;
+            this.StairsPlanPictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.StairsPlanPictureBox.Location = new System.Drawing.Point(319, 12);
+            this.StairsPlanPictureBox.Name = "StairsPlanPictureBox";
+            this.StairsPlanPictureBox.Size = new System.Drawing.Size(264, 294);
+            this.StairsPlanPictureBox.TabIndex = 0;
+            this.StairsPlanPictureBox.TabStop = false;
             // 
             // MainForm
             // 
@@ -429,7 +429,7 @@
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "StairsPlugin";
-            ((System.ComponentModel.ISupportInitialize)(this.StairsPlanPictureBox)).EndInit();
+            this.Load += new System.EventHandler(this.MainForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.StairsHeightNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.StairsWidthNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.StairsThicknessNumericUpDown)).EndInit();
@@ -437,6 +437,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.StepLengthNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.StepHeightNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.StepsGapNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.StairsPlanPictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -65,7 +65,7 @@
                 { StringerWidthNumericUpDown, StairsParameterType.StringerWidth },
                 { StepLengthNumericUpDown, StairsParameterType.StepLength },
                 { StepHeightNumericUpDown, StairsParameterType.StepHeight },
-                { StepsGapNumericUpDown, StairsParameterType.StepGap }
+                { StepsGapNumericUpDown, StairsParameterType.StepsGap }
             };
         }
 
@@ -171,10 +171,10 @@
                     break;
                 }
 
-                case StairsParameterType.StepGap:
+                case StairsParameterType.StepsGap:
                 {
                     _parameters.SetValue(
-                        StairsParameterType.StepGap,
+                        StairsParameterType.StepsGap,
                         (int)numericUpDown.Value);
 
                     break;
@@ -260,6 +260,17 @@
             }
 
             return true;
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            StairsHeightNumericUpDown.Value = _parameters.GetValue(StairsParameterType.Height);
+            StairsWidthNumericUpDown.Value = _parameters.GetValue(StairsParameterType.Width);
+            StairsThicknessNumericUpDown.Value = _parameters.GetValue(StairsParameterType.Thickness);
+            StringerWidthNumericUpDown.Value = _parameters.GetValue(StairsParameterType.StringerWidth);
+            StepLengthNumericUpDown.Value = _parameters.GetValue(StairsParameterType.StepLength);
+            StepHeightNumericUpDown.Value = _parameters.GetValue(StairsParameterType.StepHeight);
+            StepsGapNumericUpDown.Value = _parameters.GetValue(StairsParameterType.StepsGap);
         }
     }
 }

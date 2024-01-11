@@ -38,6 +38,6 @@
         /// <summary>
         /// Расстояние между ступенями.
         /// </summary>
-        StepGap
+        StepsGap
     }
 }

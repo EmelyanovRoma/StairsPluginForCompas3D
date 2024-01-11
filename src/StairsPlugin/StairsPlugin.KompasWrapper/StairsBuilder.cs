@@ -9,16 +9,6 @@
     public class StairsBuilder
     {
         /// <summary>
-        /// Расстояние между ступенями.
-        /// </summary>
-        private const int StepsGap = 300;
-
-        /// <summary>
-        /// Высота ступени.
-        /// </summary>
-        private const int StepHeight = 20;
-
-        /// <summary>
         /// Коннектор компаса.
         /// </summary>
         private readonly KompasConnector _ksConnector = new KompasConnector();
@@ -70,7 +60,7 @@
             var stepHeight = stairsParameters.GetValue(
                 StairsParameterType.StepHeight);
             var stepGap = stairsParameters.GetValue(
-                StairsParameterType.StepGap);
+                StairsParameterType.StepsGap);
 
             int stepsCount = stairsHeight / stepGap;
             var stepsDistance = (stepGap * (stepsCount - 1)) +
