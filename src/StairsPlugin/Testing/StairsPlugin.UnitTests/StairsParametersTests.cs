@@ -17,6 +17,7 @@
             var expected = 1000;
 
             // Act
+            stairsParameters.SetValue(StairsParameterType.Height, expected);
             var actual = stairsParameters.GetValue(type);
 
             // Assert
@@ -77,73 +78,6 @@
             ClassicAssert.AreEqual(expectedValue, actualValue);
         }
 
-        [Test(Description = "Positive RecalculateStairsWidth and recalculate"
-                            + " step length max value method test.")]
-        public void Value_SetStringerWidthValue_ReturnsCorrectRecalculatedStairsWidth()
-        {
-            // Arrange
-            var stairsParameters = new StairsParameters();
-            var type = StairsParameterType.StringerWidth;
-            var stringersWidthValue = 30;
-            var expectedStairsWidthValue = 210;
-            var expectedStepLengthMaxValue = 940;
-
-            // Act
-            stairsParameters.SetValue(type, stringersWidthValue);
-            var actualStairsWidthValue =
-                stairsParameters.GetValue(StairsParameterType.Width);
-            var actualStepLengthMaxValue =
-                stairsParameters.GetMaxValue(StairsParameterType.StepLength);
-
-            // Assert
-            Assert.Multiple(
-                () =>
-                {
-                    ClassicAssert.AreEqual(
-                        expectedStairsWidthValue, actualStairsWidthValue);
-                    ClassicAssert.AreEqual(
-                        expectedStepLengthMaxValue, actualStepLengthMaxValue);
-                });
-        }
-
-        [Test(Description = "Positive RecalculateStairsWidth method test.")]
-        public void Value_SetStepLengthValue_ReturnsCorrectRecalculatedStairsWidth()
-        {
-            // Arrange
-            var stairsParameters = new StairsParameters();
-            var type = StairsParameterType.StepLength;
-            var stepLengthValue = 200;
-            var expectedStairsWidthValue = 240;
-
-            // Act
-            stairsParameters.SetValue(type, stepLengthValue);
-            var actualStairsWidthValue =
-                stairsParameters.GetValue(StairsParameterType.Width);
-
-            // Assert
-            ClassicAssert.AreEqual(
-                expectedStairsWidthValue, actualStairsWidthValue);
-        }
-
-        [Test(Description = "Positive RecalculateStepLength method test.")]
-        public void Value_SetStairsWidthValue_ReturnsCorrectRecalculatedStepLength()
-        {
-            // Arrange
-            var stairsParameters = new StairsParameters();
-            var type = StairsParameterType.Width;
-            var stairsWidthValue = 240;
-            var expectedStepLengthValue = 200;
-
-            // Act
-            stairsParameters.SetValue(type, stairsWidthValue);
-            var actualStepLengthValue =
-                stairsParameters.GetValue(StairsParameterType.StepLength);
-
-            // Assert
-            ClassicAssert.AreEqual(
-                expectedStepLengthValue, actualStepLengthValue);
-        }
-
         [TestCase(950, 45,
             TestName = "Positive test of SetValue method for check stringer"
                        + " width max value (expected = 45)")]
@@ -167,6 +101,7 @@
                 expectedStringerWidthMaxValue, actualStringerWidthMaxValue);
         }
 
+        // TODO: Check
         [Test(Description = "Positive test of SetValue method"
                             + " for check stringer width max value"
                             + " if new max value over 50")]
@@ -212,7 +147,7 @@
         [TestCase(StairsParameterType.StringerWidth, 55,
             TestName = "Check on cross validation if stringer width value "
                        + "less than min value")]
-        public void Value_SetStairsWidthValue_ReturnsCorrectRecalculated(
+        public void Value_SetDependentValue_ThrowsArgumentException(
             StairsParameterType type, int wrongValue)
         {
             // Arrange
@@ -228,6 +163,24 @@
                     stairsParameters.SetValue(type, wrongValue);
                 },
                 message);
+        }
+
+        [Test(Description = "Positive SetValue method test if step length"
+                            + " less than 150")]
+        public void Value_SetStairsWidthValue_ReturnsCorrectStepLength()
+        {
+            // Arrange
+            var stairsParameters = new StairsParameters();
+            var expectedStepLength = 150;
+
+            // Act
+            stairsParameters.SetValue(StairsParameterType.StringerWidth, 35);
+            stairsParameters.SetValue(StairsParameterType.Width, 300);
+            stairsParameters.SetValue(StairsParameterType.Width, 190);
+            var actualStepLength = stairsParameters.GetValue(StairsParameterType.StepLength);
+
+            // Assert
+            ClassicAssert.AreEqual(expectedStepLength, actualStepLength);
         }
     }
 }

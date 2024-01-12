@@ -17,19 +17,19 @@
             {
                 {
                     StairsParameterType.Height, new StairsParameter(
-                        10000, 1000, 5000)
+                        10000, 1000, 1000)
                 },
                 {
                     StairsParameterType.Width, new StairsParameter(
-                        1000, 190, 200)
+                        1000, 190, 190)
                 },
                 {
                     StairsParameterType.Thickness, new StairsParameter(
-                        50, 20, 35)
+                        50, 20, 20)
                 },
                 {
                     StairsParameterType.StringerWidth, new StairsParameter(
-                        50, 20, 25)
+                        50, 20, 20)
                 },
                 {
                     StairsParameterType.StepLength, new StairsParameter(
@@ -93,37 +93,7 @@
             switch (type)
             {
                 case StairsParameterType.Width:
-                    if (_stairsParameters[type].Value -
-                        (2 * _stairsParameters[StairsParameterType.StringerWidth].Value) <
-                        _stairsParameters[StairsParameterType.StepLength].MinValue)
-                    {
-                        _stairsParameters[StairsParameterType.StringerWidth].Value -=
-                            (int)Math.Ceiling((decimal)(_stairsParameters[StairsParameterType.StepLength].MinValue -
-                            (_stairsParameters[type].Value -
-                            (2 * _stairsParameters[StairsParameterType.StringerWidth].Value))) / 2);
-                    }
-
-                    RecalculateStepLength();
-
-                    if (_stairsParameters[type].Value > 940)
-                    {
-                        var newStringerWidthMaxValue =
-                            (_stairsParameters[type].MaxValue -
-                             _stairsParameters[StairsParameterType.StepLength].Value) / 2;
-
-                        _stairsParameters[StairsParameterType.StringerWidth].MaxValue =
-                            newStringerWidthMaxValue > 50 ? 50 : newStringerWidthMaxValue;
-                    }
-                    else
-                    {
-                        _stairsParameters[
-                            StairsParameterType.StringerWidth].MaxValue = 50;
-                    }
-
-                    _stairsParameters[StairsParameterType.StringerWidth].Value =
-                        (_stairsParameters[StairsParameterType.Width].Value
-                         - _stairsParameters[StairsParameterType.StepLength].Value) / 2;
-
+                    AdjustWidthParameters();
                     break;
 
                 case StairsParameterType.StepLength:
@@ -131,13 +101,52 @@
                     break;
 
                 case StairsParameterType.StringerWidth:
-                    RecalculateStairsWidth();
-
-                    _stairsParameters[StairsParameterType.StepLength].MaxValue =
-                        _stairsParameters[StairsParameterType.Width].MaxValue
-                        - (2 * _stairsParameters[type].Value);
+                    AdjustStepLengthParameter();
                     break;
             }
+        }
+
+        /// <summary>
+        /// Устанавливает длину ступени и ширину балки.
+        /// </summary>
+        private void AdjustWidthParameters()
+        {
+            var widthParameter = _stairsParameters[StairsParameterType.Width];
+            var stringerWidthParameter = _stairsParameters[StairsParameterType.StringerWidth];
+            var stepLengthParameter = _stairsParameters[StairsParameterType.StepLength];
+
+            if (widthParameter.Value - (2 * stringerWidthParameter.Value) <
+                stepLengthParameter.MinValue)
+            {
+                stringerWidthParameter.Value -= (int)Math.Ceiling(
+                    (decimal)(stepLengthParameter.MinValue -
+                              (widthParameter.Value - (2 * stringerWidthParameter.Value))) / 2);
+            }
+
+            RecalculateStepLength();
+
+            var newStringerWidthMaxValue =
+                (widthParameter.MaxValue - stepLengthParameter.Value) / 2;
+            stringerWidthParameter.MaxValue =
+                Math.Min(newStringerWidthMaxValue, 50);
+
+            stringerWidthParameter.Value =
+                (widthParameter.Value - stepLengthParameter.Value) / 2;
+        }
+
+        /// <summary>
+        /// Устанавливает ширину лестницы.
+        /// </summary>
+        private void AdjustStepLengthParameter()
+        {
+            var widthParameter = _stairsParameters[StairsParameterType.Width];
+            var stringerWidthParameter = _stairsParameters[StairsParameterType.StringerWidth];
+            var stepLengthParameter = _stairsParameters[StairsParameterType.StepLength];
+
+            RecalculateStairsWidth();
+
+            stepLengthParameter.MaxValue =
+                widthParameter.MaxValue - (2 * stringerWidthParameter.Value);
         }
 
         /// <summary>
@@ -166,28 +175,27 @@
         private void CrossValidation(StairsParameterType type, int value)
         {
             // TODO: duplication
-            if (type == StairsParameterType.StepLength)
-            {
-                if (value < _stairsParameters[type].MinValue
-                    || value > _stairsParameters[type].MaxValue)
+            Dictionary<StairsParameterType, string> parameterDescriptions =
+                new Dictionary<StairsParameterType, string>()
                 {
-                    throw new ArgumentException(
-                        $"Длина ступени должна быть в диапазоне"
-                        + $" {_stairsParameters[type].MinValue} -"
-                        + $" {_stairsParameters[type].MaxValue} мм");
-                }
+                    { StairsParameterType.StepLength, "длина ступени" },
+                    { StairsParameterType.StringerWidth, "ширина балки" }
+                };
+
+            string parameterName;
+            if (!parameterDescriptions.TryGetValue(type, out parameterName))
+            {
+                parameterName = "Неизвестный параметр";
             }
 
-            if (type == StairsParameterType.StringerWidth)
+            if ((value < _stairsParameters[type].MinValue
+                || value > _stairsParameters[type].MaxValue)
+                && parameterName != "Неизвестный параметр")
             {
-                if (value < _stairsParameters[type].MinValue
-                    || value > _stairsParameters[type].MaxValue)
-                {
-                    throw new ArgumentException(
-                        $"Ширина балки должна быть в диапазоне"
-                        + $" {_stairsParameters[type].MinValue} -"
-                        + $" {_stairsParameters[type].MaxValue} мм");
-                }
+                throw new ArgumentException(
+                    $"Параметр {parameterName} должен быть в диапазоне"
+                    + $" {_stairsParameters[type].MinValue} -"
+                    + $" {_stairsParameters[type].MaxValue} мм");
             }
         }
     }
