@@ -70,6 +70,29 @@
         }
 
         /// <summary>
+        /// Загрузка значений на форму.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            StairsHeightNumericUpDown.Value =
+                _parameters.GetValue(StairsParameterType.Height);
+            StairsWidthNumericUpDown.Value =
+                _parameters.GetValue(StairsParameterType.Width);
+            StairsThicknessNumericUpDown.Value =
+                _parameters.GetValue(StairsParameterType.Thickness);
+            StringerWidthNumericUpDown.Value =
+                _parameters.GetValue(StairsParameterType.StringerWidth);
+            StepLengthNumericUpDown.Value =
+                _parameters.GetValue(StairsParameterType.StepLength);
+            StepHeightNumericUpDown.Value =
+                _parameters.GetValue(StairsParameterType.StepHeight);
+            StepsGapNumericUpDown.Value =
+                _parameters.GetValue(StairsParameterType.StepsGap);
+        }
+
+        /// <summary>
         /// Кнопка построения лестницы.
         /// </summary>
         /// <param name="sender"></param>
@@ -260,17 +283,6 @@
             }
 
             return true;
-        }
-
-        private void MainForm_Load(object sender, EventArgs e)
-        {
-            StairsHeightNumericUpDown.Value = _parameters.GetValue(StairsParameterType.Height);
-            StairsWidthNumericUpDown.Value = _parameters.GetValue(StairsParameterType.Width);
-            StairsThicknessNumericUpDown.Value = _parameters.GetValue(StairsParameterType.Thickness);
-            StringerWidthNumericUpDown.Value = _parameters.GetValue(StairsParameterType.StringerWidth);
-            StepLengthNumericUpDown.Value = _parameters.GetValue(StairsParameterType.StepLength);
-            StepHeightNumericUpDown.Value = _parameters.GetValue(StairsParameterType.StepHeight);
-            StepsGapNumericUpDown.Value = _parameters.GetValue(StairsParameterType.StepsGap);
         }
     }
 }
