@@ -113,18 +113,20 @@
         private void NumericUpDown_ValueChanged(object sender, EventArgs e)
         {
             var numericUpDown = (NumericUpDown)sender;
+            var parameterType = _numericUpDownType[numericUpDown];
 
-            // TODO: refactor
-            switch (_numericUpDownType[numericUpDown])
+            switch (parameterType)
             {
                 case StairsParameterType.Height:
+                case StairsParameterType.Thickness:
+                case StairsParameterType.StepHeight:
+                case StairsParameterType.StepsGap:
                 {
                     _parameters.SetValue(
-                        StairsParameterType.Height,
+                        parameterType,
                         (int)numericUpDown.Value);
                     break;
                 }
-
                 case StairsParameterType.Width:
                 {
                     _parameters.SetValue(
@@ -144,16 +146,6 @@
                         StairsParameterType.StepLength);
                     break;
                 }
-
-                case StairsParameterType.Thickness:
-                {
-                    _parameters.SetValue(
-                        StairsParameterType.Thickness,
-                        (int)numericUpDown.Value);
-
-                    break;
-                }
-
                 case StairsParameterType.StringerWidth:
                 {
                     SetParameterValue(numericUpDown);
@@ -184,28 +176,8 @@
                         _numericUpDownType[numericUpDown]);
                     break;
                 }
-
-                case StairsParameterType.StepHeight:
-                {
-                    _parameters.SetValue(
-                        StairsParameterType.StepHeight,
-                        (int)numericUpDown.Value);
-
-                    break;
-                }
-
-                case StairsParameterType.StepsGap:
-                {
-                    _parameters.SetValue(
-                        StairsParameterType.StepsGap,
-                        (int)numericUpDown.Value);
-
-                    break;
-                }
             }
         }
-
-        // TODO: rsdn
 
         /// <summary>
         /// Обработчик события, вызывающийся при уходе с NumericUpDown.

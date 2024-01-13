@@ -174,7 +174,6 @@
         /// </summary>
         private void CrossValidation(StairsParameterType type, int value)
         {
-            // TODO: duplication
             Dictionary<StairsParameterType, string> parameterDescriptions =
                 new Dictionary<StairsParameterType, string>()
                 {
